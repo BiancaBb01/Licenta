@@ -1,0 +1,46 @@
+.auth-buttons {
+    display: flex;
+    gap: 2px; /* Spațiu între butoane */
+    align-items: center;
+  }
+.auth-buttons button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    display: flex;
+    gap: 2px; /* Reduce spațiul dintre butoane */
+    align-items: center;
+
+      
+  }
+  
+  .auth-buttons button:hover {
+    background: #218838;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .profile button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    .auth-buttons {
+      flex-direction: row; /* Pe mobil, butoanele rămân unul lângă altul */
+      justify-content: center;
+      width: 100%;
+    }
+}

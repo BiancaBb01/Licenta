@@ -1,0 +1,131 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 15px; /* 🔹 Navbar mai mic pe înălțime */
+}
+
+.navbar-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 🔹 Logo pe stânga */
+.logo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 100px; /* 🔹 Logo mai mic */
+  height: auto;
+}
+
+/* 🔹 Meniu principal centrat */
+.nav-links {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 17px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #2E8B57;
+}
+
+/* 🔹 Grupare SearchBar, Login și Cart pe dreapta */
+.navbar-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px; /* 🔹 Spațiere între elemente */
+}
+
+/* 🔹 Reordonăm elementele din dreapta */
+.search-container {
+  order: 1; /* 🔹 SearchBar primul în grup */
+}
+
+.login-button {
+  
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4CAF50, #2E8B57);
+  color: white;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #45a049, #1E5D3A);
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-icon {
+  order: 3; /* 🔹 CartIcon ultimul */
+  position: relative;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* 🔹 Butonul hamburger pentru mobil */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* 🔹 RESPONSIVE DESIGN 🔹 */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .login-button {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
