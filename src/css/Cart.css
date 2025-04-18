@@ -1,72 +1,149 @@
-.cart-page {
-    padding: 50px 10%;
-    text-align: center;
-  }
-  
-  .cart-page ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .cart-page li {
+/* Containerul general pentru un produs din coș */
+.cart-item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
+    justify-content: flex-start; /* sau space-between, cum preferi */
+    background: #fff;
+    padding: 10px;
     margin-bottom: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-.empty-cart {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #666;
-    margin-top: 20px;
-  }
-  
-  .empty-cart p {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #444;
+    border-radius: 10px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 700px;   /* ajustează în funcție de design */
+    margin-left: auto;  /* ca să fie centrat */
+    margin-right: auto; /* idem */
+    
   }
   
-  .back-to-products {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: #4CAF50;
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: 0.3s ease-in-out;
+  /* Stânga: imagine */
+  .cart-item-left {
+    margin-right: 10px; /* spațiu între imagine și rest */
   }
   
-  .back-to-products:hover {
-    background: #45a049;
-  }
-  
+  /* Dimensiunile imaginii */
   .cart-image {
-    width: 60px;
-    height: 60px;
+    width: 80px;   /* ajustează după preferință */
+    height: 80px;
     object-fit: cover;
     border-radius: 5px;
   }
   
-  .cart-details {
-    flex: 1;
-    padding-left: 15px;
+  /* Mijloc: nume, preț unitar etc. */
+  .cart-item-middle {
+    flex: 1; /* se întinde să ocupe spațiul dintre stânga și dreapta */
     text-align: left;
+    font-size: 14px;
+    
   }
   
+  /* Dreapta: total, butoane increment/decrement, remove */
+  .cart-item-right {
+    display: flex;
+    flex-direction: column; /* ca să apară un element sub altul */
+    align-items: flex-end;  /* aliniat la dreapta */
+    gap: 5px;               /* mic spațiu între elemente */
+  }
+  
+  /* Control cantitate */
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  /* Butoanele +/– */
+  .quantity-btn {
+    background: #ddd;
+    border: none;
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  .quantity-btn:hover {
+    background: #bbb;
+  }
+  
+  /* Textul cu cantitatea curentă */
+  .quantity {
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 20px;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  /* Buton de ștergere */
   .remove-btn {
     background: red;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 6px 10px;
+    font-size: 12px;
     border-radius: 5px;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
   }
   
+  .remove-btn:hover {
+    background: darkred;
+  }
+  
+  @media (max-width: 600px) {
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .cart-item-right {
+      align-items: flex-start;
+      width: 100%;
+    }
+  
+    .cart-image {
+      width: 100%;
+      height: auto;
+    }
+  }
+ 
+.cart-item-middle p {
+  color: #333; /* Sau orice altă culoare dorești (de exemplu, black: #000) */
+  margin-bottom: 5px; /* Adaugă puțin spațiu sub fiecare paragraf */
+}
+
+/* Poți specifica un stil diferit pentru titluri (h4) dacă dorești */
+.cart-item-middle h4 {
+  color: #007bff; /* Un exemplu de culoare albastră */
+  margin-bottom: 8px;
+}
+
+/* Dacă ai stiluri specifice pentru textul bold, le poți ajusta și pe ele */
+.cart-item-middle strong {
+  color: #555; /* Un exemplu de gri mai închis pentru textul bold */
+}
+
+.product-details-horizontal {
+  display: flex;
+  flex-wrap: wrap; /* Permite trecerea pe o linie nouă dacă nu încap toate detaliile */
+  gap: 10px; /* Spațiu între detaliile orizontale */
+  font-size: 12px; /* Un font mai mic pentru detalii */
+  margin-top: 5px; /* Spațiu între subtotal și detalii */
+}
+
+.product-details-horizontal p {
+  margin-bottom: 0; /* Elimină margin-ul vertical implicit al paragrafului */
+}
+
+.detail-label {
+  color: green; /* Schimbă culoarea etichetelor aici (exemplu: verde) */
+  font-weight: bold; /* Le facem și bold pentru a ieși în evidență */
+}
+
+/* Poți ajusta stilurile pentru ecran mic dacă este necesar */
+@media (max-width: 600px) {
+  .product-details-horizontal {
+    flex-direction: column; /* Revine la afișarea pe verticală pe ecrane mici */
+    gap: 5px;
+  }
+}

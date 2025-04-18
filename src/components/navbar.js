@@ -8,6 +8,7 @@ import ProfileDropdown from "./ProfilDd";
 import CartIcon from "./CartIcon";
 import "../css/navbar.css";
 import logo from "../images/logo.jpg";
+import AdaugaProdus from "../components/AdaugaProdus.js";
 
 const Navbar = ({ cart, setSearchQuery }) => {
   const { user } = useAuth();
@@ -30,6 +31,10 @@ const Navbar = ({ cart, setSearchQuery }) => {
           <Link to="/products" onClick={() => setMenuOpen(false)}>Produse</Link>
           <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
           <SearchBar setQuery={setSearchQuery} />
+          <Link to="/adauga-produs" className="nav-link">
+              Adaugă Produs
+          </Link>
+
         </div>
 
         {/* Dreapta: autentificare și coș */}

@@ -1,0 +1,72 @@
+.adauga-produs {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 128, 0, 0.1);
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .adauga-produs h2 {
+    color: #2e7d32;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .adauga-produs form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .adauga-produs input,
+  .adauga-produs textarea {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #c8e6c9;
+    font-size: 15px;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .adauga-produs input:focus,
+  .adauga-produs textarea:focus {
+    outline: none;
+    border-color: #66bb6a;
+  }
+  
+  .adauga-produs textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .adauga-produs button {
+    padding: 12px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .adauga-produs button:hover {
+    background-color: #388e3c;
+  }
+  
+  .image-upload-container {
+    margin-bottom: 15px;
+  }
+  
+  .image-preview {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .image-preview img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
