@@ -1,0 +1,500 @@
+/* css/SocketStyles.css - Socket.io specific styles */
+
+/* Connection Status Styles */
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.connection-status.connected {
+  background-color: #10b981;
+  color: white;
+}
+
+.connection-status.disconnected {
+  background-color: #ef4444;
+  color: white;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.connection-status.connected .status-indicator {
+  background-color: #ffffff;
+}
+
+.connection-status.disconnected .status-indicator {
+  background-color: #ffffff;
+  animation: blink 1s infinite;
+}
+
+/* Real-time Status Styles */
+.real-time-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.real-time-status.connected {
+  background-color: #10b98120;
+  color: #10b981;
+  border: 1px solid #10b98140;
+}
+
+.real-time-status.disconnected {
+  background-color: #ef444420;
+  color: #ef4444;
+  border: 1px solid #ef444440;
+}
+
+/* Live Badge */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-radius: 6px;
+  animation: livePulse 2s infinite;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.connection-badge {
+  background: linear-gradient(45deg, #10b981, #059669);
+  color: white;
+  font-size: 0.6rem;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Notification Badge */
+.notification-badge {
+  background: #ef4444;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: notificationPulse 2s infinite;
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #f3f4f6;
+  border-radius: 18px;
+  margin: 8px 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.typing-animation {
+  display: flex;
+  gap: 2px;
+}
+
+.typing-animation span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #6b7280;
+  animation: typingDots 1.5s infinite;
+}
+
+.typing-animation span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-animation span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.typing-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Real-time Info Bar */
+.real-time-info {
+  margin-top: 20px;
+  padding: 12px;
+  background: linear-gradient(90deg, #10b98110, #3b82f610);
+  border-radius: 8px;
+  border-left: 4px solid #10b981;
+}
+
+.real-time-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  animation: pulse 2s infinite;
+}
+
+/* Status Select with Real-time Indicator */
+.status-select.real-time {
+  border: 2px solid #10b981;
+  background: linear-gradient(45deg, #ffffff, #f0fdf4);
+  position: relative;
+}
+
+.status-select.real-time::after {
+  content: '🟢';
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  animation: pulse 2s infinite;
+}
+
+.status-select.offline {
+  border: 2px solid #ef4444;
+  background: linear-gradient(45deg, #ffffff, #fef2f2);
+  opacity: 0.7;
+}
+
+.offline-indicator {
+  margin-left: 4px;
+  animation: blink 1s infinite;
+}
+
+/* Enhanced Notification Items */
+.notification-item.unread {
+  background: linear-gradient(90deg, #eff6ff, #ffffff);
+  border-left: 4px solid #3b82f6;
+  animation: notificationGlow 3s ease-in-out;
+}
+
+.notification-item.unread .unread-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  animation: pulse 2s infinite;
+}
+
+/* Enhanced Order/Sales Cards */
+.order-card,
+.sale-card {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.order-card:hover,
+.sale-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.order-card.real-time,
+.sale-card.real-time {
+  border: 1px solid #10b981;
+  background: linear-gradient(45deg, #ffffff, #f0fdf4);
+}
+
+/* Action Buttons */
+.refresh-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background: linear-gradient(45deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+}
+
+.refresh-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.track-btn {
+  background: linear-gradient(45deg, #8b5cf6, #7c3aed);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.track-btn:hover {
+  background: linear-gradient(45deg, #7c3aed, #6d28d9);
+  transform: translateY(-1px);
+}
+
+.cancel-btn {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(45deg, #dc2626, #b91c1c);
+  transform: translateY(-1px);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  color: #ef4444;
+}
+
+/* Stats Section */
+.orders-stats,
+.sales-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 12px;
+  background: linear-gradient(45deg, #f8fafc, #f1f5f9);
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+@keyframes notificationPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes typingDots {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes notificationGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .real-time-status {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+  }
+  
+  .live-badge {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+  }
+  
+  .connection-status {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+  
+  .orders-stats,
+  .sales-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .modal-content {
+    width: 95%;
+    padding: 16px;
+  }
+}
+
+/* Toast Notification Customizations */
+.toast-container {
+  font-size: 0.875rem;
+}
+
+.toast-container .Toastify__toast {
+  border-radius: 8px;
+}
+
+.toast-container .Toastify__toast--success {
+  background: linear-gradient(45deg, #10b981, #059669);
+}
+
+.toast-container .Toastify__toast--error {
+  background: linear-gradient(45deg, #ef4444, #dc2626);
+}
+
+.toast-container .Toastify__toast--info {
+  background: linear-gradient(45deg, #3b82f6, #2563eb);
+}
+
+.toast-container .Toastify__toast--warning {
+  background: linear-gradient(45deg, #f59e0b, #d97706);
+}

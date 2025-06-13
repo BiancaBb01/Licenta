@@ -1,12 +1,14 @@
-.profile-container {
+.profile-container, .profile-container p {
     position: relative;
     cursor: pointer;
+    color: black;
   }
   
   .profile-icon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    color: black;
   }
   
   .profile-dropdown {
@@ -35,7 +37,7 @@
   }
   
   .logout-btn {
-    background: red;
+    background: #4CAF50;
     color: white;
   }
   

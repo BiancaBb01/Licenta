@@ -1,8 +1,11 @@
 // AdaugaProdus.js
 import React, { useState } from "react";
+import { useAuth } from "../context/AuthContext"; // Importăm contextul de autentificare
 import "../css/AdaugaProdus.css";
+import axios from "axios";
 
-const AdaugaProdus = () => {
+const AdaugaProdus = ({onSuccess}) => {
+  const { user } = useAuth(); // Obținem utilizatorul autentificat
   const [formData, setFormData] = useState({
     name: "",
     price: "",
@@ -10,7 +13,7 @@ const AdaugaProdus = () => {
     type: "",
     producer: "",
     location: "",
-    phone: "",
+    phone: user?.phone || "", // Precompletăm cu telefonul utilizatorului dacă există
     description: "",
     tags: "",
     imageUrl: "",
@@ -18,6 +21,8 @@ const AdaugaProdus = () => {
   
   const [selectedImage, setSelectedImage] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,6 +45,14 @@ const AdaugaProdus = () => {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setIsSubmitting(true);
+
+    if (!user || !user.id) {
+      setError("Trebuie să fii autentificat pentru a adăuga produse!");
+      setIsSubmitting(false);
+      return;
+    }
     
     // Crează un obiect FormData pentru a putea trimite și fișierul
     const submitFormData = new FormData();
@@ -52,8 +65,13 @@ const AdaugaProdus = () => {
     });
     
     // Adaugă tag-urile ca array
-    const tags = formData.tags.split(",").map(tag => tag.trim().toLowerCase());
-    submitFormData.append('tags', JSON.stringify(tags));
+    if (formData.tags) {
+      const tags = formData.tags.split(",").map(tag => tag.trim().toLowerCase());
+      submitFormData.append('tags', JSON.stringify(tags));
+    }
+
+    // Nu mai trebuie să adăugăm explicit userId, serverul îl va extrage din token
+    // submitFormData.append('userId', user.id);
     
     // Adaugă imaginea dacă există
     if (selectedImage) {
@@ -61,14 +79,20 @@ const AdaugaProdus = () => {
     }
     
     try {
-      const response = await fetch("/api/products", {
-        method: "POST",
-        body: submitFormData, // Nu mai setăm headerul Content-Type, FormData îl setează automat
-      });
+      // Obținem token-ul din localStorage
+      const token = localStorage.getItem('token');
+      console.log("Token din localStorage:", token); // pentru depanare
+
+      if (!token) {
+        setError("Sesiunea ta a expirat. Te rugăm să te autentifici din nou.");
+        setIsSubmitting(false);
+        return;
+      }
       
-      const result = await response.json();
-      alert("✅ Produsul a fost adăugat!");
-      console.log(result);
+      const response = await axios.post("/api/products", submitFormData);
+      
+    
+      console.log("Produs adăugat cu succes:", response);
       
       // Reset form
       setFormData({
@@ -78,21 +102,33 @@ const AdaugaProdus = () => {
         type: "",
         producer: "",
         location: "",
-        phone: "",
+        phone: user?.phone || "",
         description: "",
         tags: "",
         imageUrl: "",
       });
       setSelectedImage(null);
       setPreviewUrl(null);
+      
+      if (onSuccess) {
+        onSuccess();
+      }
     } catch (err) {
       console.error("Eroare la trimiterea formularului:", err);
+      setError(err.message || "A apărut o eroare la adăugarea produsului");
+    } finally {
+      setIsSubmitting(false);
     }
   };
   
   return (
     <div className="adauga-produs">
       <h2>Adaugă un Produs Nou</h2>
+      
+      {error && (
+        <div className="error-message">{error}</div>
+      )}
+      
       <form onSubmit={handleSubmit}>
         <input 
           name="name" 
@@ -104,6 +140,9 @@ const AdaugaProdus = () => {
         <input 
           name="price" 
           value={formData.price}
+          type="number"
+          step="0.01"
+          min="0"
           placeholder="Preț (ex: 10.00)" 
           onChange={handleChange} 
           required 
@@ -177,7 +216,9 @@ const AdaugaProdus = () => {
           onChange={handleChange}
         ></textarea>
         
-        <button type="submit">Adaugă Produs</button>
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Se adaugă..." : "Adaugă Produs"}
+        </button>
       </form>
     </div>
   );

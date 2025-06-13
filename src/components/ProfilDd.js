@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import {FaUser} from 'react-icons/fa';
 import "../css/ProfilDd.css";
 
 const ProfileDropdown = () => {
@@ -13,14 +14,12 @@ const ProfileDropdown = () => {
 
   return (
     <div className="profile-container">
-      <img src="/images/profile-icon.png" alt="Profil" className="profile-icon" onClick={() => setIsOpen(!isOpen)} />
+      <FaUser onClick={() => setIsOpen(!isOpen)} />
 
       {isOpen && (
         <div className="profile-dropdown">
           <p><strong>{user.name}</strong></p>
-          <p>{user.email}</p>
-          <p>{user.city}, {user.locality}</p>
-          <button onClick={() => navigate("/profil")}>Vezi Profil</button>
+          <button onClick={() => navigate("/profile")}>Profil</button>
           <button className="logout-btn" onClick={logout}>Logout</button>
         </div>
       )}

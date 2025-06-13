@@ -1,34 +1,61 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import "../../src/css/home.css";
 import backgroundImage from '../images/fundal.jpg'; // Imaginea de fundal
-import rosii from '../images/rosii.jpg';
-import salata from '../images/salata.jpg';
-import capsuni from '../images/capsuni.jpg';
 import descriptionImage from '../images/fruits.jpg'; // Imaginea pentru secțiunea despre site
 import FormContact from '../components/FormContact';
-// Datele produselor
-const products = [
-  {
-    id: 1,
-    name: "Roșii Organice",
-    description: "Savurează dulceața naturală a roșiilor noastre organice.",
-    image: rosii,
-  },
-  {
-    id: 2,
-    name: "Salată Verde",
-    description: "Oferă prospețime preparatelor tale cu salata noastră crocantă.",
-    image: salata,
-  },
-  {
-    id: 3,
-    name: "Căpșuni Proaspete",
-    description: "Bucură-te de dulceața căpșunilor noastre proaspete.",
-    image: capsuni,
-  }
-];
+import ProductCard from '../components/ProductCard'; // Importă ProductCard
+import BulletproofLeafletMap from '../components/Map'; // Importă harta producătorilor
+import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ cart, setCart }) => { // Primește cart și setCart ca props
+  const [homeProducts, setHomeProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchHomeProducts = async () => {
+      try {
+        const response = await axios.get('/api/products?limit=3'); // Fetch doar câteva produse pentru pagina de home (ajustează numărul după nevoie)
+        setHomeProducts(response.data.slice(0,7));
+        setLoading(false);
+      } catch (err) {
+        console.error('Eroare la încărcarea produselor pentru Home:', err);
+        setError('Nu s-au putut încărca produsele. Încearcă din nou mai târziu.');
+        setLoading(false);
+      }
+    };
+
+    fetchHomeProducts();
+  }, []);
+
+  const addToCart = (product, quantity = 1) => {
+    // Verificăm dacă produsul există deja în coș
+    const existingItem = cart.find(item => item.id === product.id);
+
+    if (existingItem) {
+      // Dacă există, incrementăm cantitatea
+      setCart(cart.map(item =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + quantity }
+          : item
+      ));
+    } else {
+      // Dacă nu există, îl adăugăm cu cantitatea specificată
+      setCart([
+        ...cart,
+        { ...product, quantity }
+      ]);
+    }
+
+    // Feedback vizual
+    alert(`${product.name} a fost adăugat în coș (${quantity} bucăți)!`);
+  };
+
+  if (loading) return <div className="loading">Se încarcă produsele...</div>;
+  if (error) return <div className="error">{error}</div>;
+
   return (
     <div>
       {/* Secțiunea Parallax */}
@@ -38,7 +65,7 @@ const Home = () => {
         <div className="parallax-content">
           <h1>Green Garden</h1>
           <p>Fructe și legume proaspete, direct de la producători</p>
-          <button className="explore-button">View Products</button>
+          <button className="explore-button" onClick={() => navigate("/products")}>View Products</button>
         </div>
       </div>
 
@@ -63,23 +90,31 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Secțiunea cu Harta Producătorilor */}
+      <section className="producers-map-section">
+        <div className="producers-content">
+          <h3 className="green-title">REȚEAUA NOASTRĂ</h3>
+          <h2>Producători din toată România</h2>
+          <p>
+            Descoperă harta producătorilor noștri - fermieri pasionați care îți aduc cele mai proaspete produse
+            direct din grădinile și livezile lor. De la Maramureș la Dobrogea, avem parteneri în toate zonele țării.
+          </p>
+        </div>
+        <div className="map-container">
+          <BulletproofLeafletMap compact={true} height={600}/>
+        </div>
+      </section>
+
       {/* Secțiunea cu produse */}
       <section className="product-summary">
-        <h2>Descoperă fructele și legumele noastre</h2>
+        <h2>Descoperă o parte din produsele noastre</h2>
         <div className="product-grid">
-          {products.map((product) => (
-            <div key={product.id} className="product-card">
-              <img src={product.image} alt={product.name} className="product-image" />
-              <div className="product-info">
-                <h3>{product.name}</h3>
-                <p>{product.description}</p>
-                <a href={`/products/${product.id}`} className="product-link">Vezi detalii →</a>
-              </div>
-            </div>
+          {homeProducts.map((product) => (
+            <ProductCard key={product.id} product={product} addToCart={addToCart} />
           ))}
         </div>
       </section>
-      <FormContact/>
+      <FormContact />
     </div>
   );
 };

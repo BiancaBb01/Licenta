@@ -30,10 +30,10 @@ const Navbar = ({ cart, setSearchQuery }) => {
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/products" onClick={() => setMenuOpen(false)}>Produse</Link>
           <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+          <Link to="/messagepage" onClick={() => setMenuOpen(false)}>Message</Link>
+          <Link to="/my-orders">Comenzile mele</Link>
+          <Link to="/my-sales">Vânzările mele</Link>
           <SearchBar setQuery={setSearchQuery} />
-          <Link to="/adauga-produs" className="nav-link">
-              Adaugă Produs
-          </Link>
 
         </div>
 

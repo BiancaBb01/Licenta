@@ -1,0 +1,310 @@
+/* ProductCard.css - Versiunea Corectată pentru afișare completă */
+
+/* ========================================
+   RESET & CONTAINER PRINCIPAL
+======================================== */
+.product-list {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.product-list h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Grid pentru produse */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  animation: fadeIn 0.5s ease;
+}
+
+/* ========================================
+   PRODUCT CARD - ÎNĂLȚIME AUTOMATĂ
+======================================== */
+.product-card {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 16px !important;
+  position: relative !important;
+  margin: 0 !important;
+  
+  /* ✅ CRITICAL: Înălțime automată pentru a afișa tot conținutul */
+  height: auto !important;
+  min-height: 420px !important;
+  max-height: none !important;
+}
+
+.product-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ========================================
+   PRODUCT IMAGE - POTRIVIRE CU JSX
+======================================== */
+.product-image {
+  width: 100% !important;
+  height: 200px !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  margin-bottom: 16px !important;
+  position: relative !important;
+  background: #f8f9fa !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.product-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+  border-radius: 8px !important;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05) !important;
+}
+
+/* ========================================
+   PRODUCT INFO - POTRIVIRE CU JSX
+======================================== */
+.product-info {
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex: 1 !important;
+}
+
+/* Link către produs */
+.product-name-link {
+  text-decoration: none !important;
+  color: #2d3748 !important;
+  transition: color 0.2s ease !important;
+  width: 100% !important;
+}
+
+.product-name-link:hover {
+  color: #3182ce !important;
+}
+
+/* Numele produsului */
+.product-name {
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  color: #2d3748 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4 !important;
+  text-align: center !important;
+}
+
+/* Prețul produsului */
+.product-price {
+  font-size: 1.4rem !important;
+  font-weight: bold !important;
+  color: #38b2ac !important;
+  margin: 8px 0 !important;
+  padding: 0 !important;
+}
+
+/* Detalii produs */
+.product-detail {
+  font-size: 0.9rem !important;
+  color: #4a5568 !important;
+  margin: 4px 0 !important;
+  padding: 0 !important;
+}
+
+/* ========================================
+   QUANTITY CONTROLS - MODERN
+======================================== */
+.quantity-controls {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  background: #f7fafc !important;
+  padding: 8px 16px !important;
+  border-radius: 25px !important;
+  margin: 12px 0 !important;
+  width: fit-content !important;
+  border: 2px solid #e2e8f0 !important;
+}
+
+/* Butoanele +/– */
+.quantity-btn {
+  background: #e2e8f0 !important;
+  border: none !important;
+  width: 32px !important;
+  height: 32px !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  color: #4a5568 !important;
+}
+
+.quantity-btn:hover {
+  background: #cbd5e0 !important;
+  transform: scale(1.1) !important;
+  color: #2d3748 !important;
+}
+
+.quantity-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* Cantitatea curentă */
+.quantity {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  min-width: 32px !important;
+  display: inline-block !important;
+  text-align: center !important;
+  color: #2d3748 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ========================================
+   ADD TO CART BUTTON - MODERN
+======================================== */
+.add-to-cart-button {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%) !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+  max-width: 220px !important;
+  letter-spacing: 0.5px !important;
+  margin-top: auto !important;
+  box-shadow: 0 4px 12px rgba(49, 130, 206, 0.25) !important;
+}
+
+.add-to-cart-button:hover {
+  background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(49, 130, 206, 0.35) !important;
+}
+
+.add-to-cart-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(49, 130, 206, 0.3) !important;
+}
+
+/* ========================================
+   ANIMAȚII
+======================================== */
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+@media (max-width: 768px) {
+  .products-container {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
+    gap: 20px !important;
+  }
+  
+  .product-card {
+    min-height: 380px !important;
+    padding: 12px !important;
+  }
+  
+  .product-image {
+    height: 180px !important;
+    margin-bottom: 12px !important;
+  }
+  
+  .product-name {
+    font-size: 1.1rem !important;
+  }
+  
+  .product-price {
+    font-size: 1.2rem !important;
+  }
+  
+  .quantity-controls {
+    scale: 0.9 !important;
+    margin: 10px 0 !important;
+  }
+  
+  .add-to-cart-button {
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    gap: 16px !important;
+  }
+  
+  .product-card {
+    min-height: 360px !important;
+    padding: 10px !important;
+  }
+  
+  .product-image {
+    height: 160px !important;
+  }
+}
+
+/* ========================================
+   ELIMINARE STILURI CONFLICTUALE
+======================================== */
+/* Resetează orice stil conflictual din alte CSS-uri */
+.product-card {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Asigură-te că toate elementele sunt vizibile */
+.product-info > * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+.quantity-controls,
+.add-to-cart-button {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}

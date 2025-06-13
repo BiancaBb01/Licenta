@@ -1,3 +1,5 @@
+/* src/css/home.css */
+
 .home-container {
   display: flex;
   flex-direction: column;
@@ -39,7 +41,7 @@ p {
 }
 
 .parallax-overlay {
-  background: rgba(0, 0, 0, 0.4); 
+  background: rgba(0, 0, 0, 0.4);
   position: absolute;
   width: 100%;
   height: 100%;
@@ -87,7 +89,7 @@ p {
 
 .product-summary {
   text-align: center;
-  padding: 50px 10%;
+  padding: 20px;
   background: #f9f9f9;
 }
 
@@ -96,20 +98,27 @@ p {
   color: #333;
   margin-bottom: 20px;
 }
+
 .product-grid {
-  display: flex;
+  display: grid;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
   flex-wrap: wrap;
+  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .product-card {
-  background: white;
-  border-radius: 10px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s ease;
+  position: relative;
   overflow: hidden;
-  width: 300px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
 }
 
 .product-card:hover {
@@ -118,35 +127,45 @@ p {
 
 .product-image {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-top: 50%;
 }
 
 .product-info {
   padding: 15px;
-  text-align: left;
+  text-align: center;
 }
 
 .product-info h3 {
-  font-size: 1.5rem;
+  font-size: 1.2em;
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .product-info p {
-  font-size: 1rem;
+  font-size: 0.9em;
   color: #666;
   margin-bottom: 10px;
 }
 
 .product-link {
-  color: #4CAF50;
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #4CAF50;
+  color: white;
   text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9em;
   font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
 .product-link:hover {
-  text-decoration: underline;
+  background-color: #45a049;
 }
 
 .about-section {
@@ -213,5 +232,85 @@ p {
   .about-image img {
     width: 100%;
     margin-top: 20px;
+  }
+
+  .product-grid {
+    justify-content: space-around; /* Modificare pentru ecrane medii */
+  }
+  .product-card {
+    width: calc(50% - 20px); /* Două carduri pe linie */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    justify-content: center; /* Revine la centrare pe ecrane mici */
+  }
+  .product-card {
+    width: 100%; /* Un card pe linie */
+  }
+}
+
+/* Secțiunea Harta Producătorilor */
+.producers-map-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 100px 8% 120px 8%;
+  text-align: center;
+}
+.producers-map-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4CAF50, #45a049, #4CAF50);
+}
+
+.producers-content {
+  max-width: 600px;
+  margin: 0 auto 40px auto;
+}
+
+.producers-content .green-title {
+  color: #4CAF50;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.producers-content h2 {
+  font-size: 2.8rem; /* Mărit titlul */
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 25px;
+}
+
+.producers-content p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.map-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  height: 650px !important; /* FORȚEAZĂ height-ul */
+  min-height: 650px !important;
+  border: 3px solid rgba(76, 175, 80, 0.1); /* Bordură subtilă verde */
+}
+
+@media (max-width: 768px) {
+  .producers-map-section {
+    padding: 60px 5%;
+  }
+  
+  .producers-content h2 {
+    font-size: 2rem;
   }
 }

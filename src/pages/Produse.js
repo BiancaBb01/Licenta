@@ -1,7 +1,7 @@
-import React from "react";
-import "../css/ProductList.css"; 
+import React from "react"; 
+import "../css/ProductList.css";
 import ProductList from "../components/ProductList";
-import backgroundImage from "../images/fundal.jpg"; // ✅ dacă vrei fundalul
+import backgroundImage from "../images/fundal.jpg"; 
 
 const Products = ({ searchQuery, cart, setCart }) => { 
   return (
@@ -16,7 +16,7 @@ const Products = ({ searchQuery, cart, setCart }) => {
       </div>
 
       <section className="products-page">
-        <ProductList cart={cart} setCart={setCart}/>
+        <ProductList searchQuery={searchQuery} cart={cart} setCart={setCart}/>
       </section>
     </div>
   );

@@ -1,15 +1,18 @@
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import "../css/AuthButtons.css";
 
 const AuthButtons = () => {
-  const { user, login, logout } = useAuth();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
-  return user (
+  if (!user) return null;
+
+  return (
     <div className="profile">
-      <span>Bun venit, {user.name}!</span>
-      <button onClick={logout}>Logout</button>
+      
     </div>
-  )
+  );
 };
 
 export default AuthButtons;

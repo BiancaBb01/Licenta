@@ -1,149 +1,362 @@
-/* Containerul general pentru un produs din coș */
+/* Containerul general pentru coș */
+.cart-wrapper {
+  padding-top: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Stilizare titlu coș */
+.cart-wrapper h2 {
+  font-size: 24px;
+  color: #2d3748;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* Card produs în coș */
 .cart-item {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* sau space-between, cum preferi */
-    background: #fff;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    max-width: 700px;   /* ajustează în funcție de design */
-    margin-left: auto;  /* ca să fie centrat */
-    margin-right: auto; /* idem */
-    
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cart-item:first-child {
+  margin-top: 30px;
+}
+
+/* Stânga: imagine */
+.cart-item-left {
+  margin-right: 16px;
+}
+
+/* Dimensiunile imaginii */
+.cart-image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item:hover .cart-image {
+  transform: scale(1.05);
+}
+
+/* Mijloc: nume, preț unitar etc. */
+.cart-item-middle {
+  flex: 1;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.cart-item-middle h4 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #3182ce;
+  font-weight: 600;
+}
+
+.cart-item-middle p {
+  color: #4a5568;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.cart-item-middle strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* Dreapta: total, butoane increment/decrement, remove */
+.cart-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Control cantitate */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7fafc;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+/* Butoanele +/– */
+.quantity-btn {
+  background: #e2e8f0;
+  border: none;
+  width: 28px;
+  height: 28px;
+  font-size: 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #4a5568;
+}
+
+.quantity-btn:hover {
+  background: #cbd5e0;
+  transform: scale(1.1);
+}
+
+/* Textul cu cantitatea curentă */
+.quantity {
+  font-size: 16px;
+  font-weight: bold;
+  min-width: 24px;
+  display: inline-block;
+  text-align: center;
+  color: #2d3748;
+}
+
+/* Buton de ștergere */
+.remove-btn {
+  background: #f56565;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.remove-btn:hover {
+  background: #e53e3e;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Stilizare pentru total coș */
+.cart-total {
+  background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+  padding: 18px 24px;
+  border-radius: 12px;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 25px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  color: #2d3748;
+}
+
+/* Container pentru butonul de plasare comandă */
+.place-order-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0 30px;
+}
+
+/* Buton plasare comandă */
+.place-order-btn {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.place-order-btn:hover {
+  background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(49, 130, 206, 0.3);
+}
+
+/* Stilizare pentru coș gol */
+.empty-cart {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+  border-radius: 12px;
+  margin: 30px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.empty-cart p {
+  font-size: 18px;
+  color: #4a5568;
+  margin-bottom: 20px;
+}
+
+.btn-go-to-products {
+  display: inline-block;
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+}
+
+.btn-go-to-products:hover {
+  background: linear-gradient(135deg, #3182ce 0%, #2b6cb0 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(49, 130, 206, 0.3);
+}
+
+/* Stiluri pentru notificarea personalizată */
+.custom-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+.notification-content {
+  background: linear-gradient(135deg, #4caf50 0%, #43a047 100%);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 280px;
+}
+
+.notification-content span {
+  margin-right: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.notification-content button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 18px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.notification-content button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
   }
-  
-  /* Stânga: imagine */
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animații pentru elementele coșului */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
   .cart-item-left {
-    margin-right: 10px; /* spațiu între imagine și rest */
+    margin-right: 0;
+    margin-bottom: 15px;
   }
-  
-  /* Dimensiunile imaginii */
+
   .cart-image {
-    width: 80px;   /* ajustează după preferință */
-    height: 80px;
-    object-fit: cover;
-    border-radius: 5px;
+    width: 120px;
+    height: 120px;
   }
-  
-  /* Mijloc: nume, preț unitar etc. */
+
   .cart-item-middle {
-    flex: 1; /* se întinde să ocupe spațiul dintre stânga și dreapta */
-    text-align: left;
-    font-size: 14px;
-    
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 0;
   }
-  
-  /* Dreapta: total, butoane increment/decrement, remove */
+
   .cart-item-right {
-    display: flex;
-    flex-direction: column; /* ca să apară un element sub altul */
-    align-items: flex-end;  /* aliniat la dreapta */
-    gap: 5px;               /* mic spațiu între elemente */
-  }
-  
-  /* Control cantitate */
-  .quantity-controls {
-    display: flex;
     align-items: center;
-    gap: 5px;
+    width: 100%;
   }
-  
-  /* Butoanele +/– */
-  .quantity-btn {
-    background: #ddd;
-    border: none;
-    padding: 4px 8px;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: 0.2s;
+
+  .quantity-controls {
+    margin-bottom: 10px;
   }
-  
-  .quantity-btn:hover {
-    background: #bbb;
-  }
-  
-  /* Textul cu cantitatea curentă */
-  .quantity {
-    font-size: 14px;
-    font-weight: bold;
-    min-width: 20px;
-    display: inline-block;
+
+  .cart-total {
     text-align: center;
   }
-  
-  /* Buton de ștergere */
-  .remove-btn {
-    background: red;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
+
+  .place-order-container {
+    justify-content: center;
+  }
+
+  .custom-notification {
+    left: 20px;
+    right: 20px;
+    width: auto;
   }
   
-  .remove-btn:hover {
-    background: darkred;
-  }
-  
-  @media (max-width: 600px) {
-    .cart-item {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .cart-item-right {
-      align-items: flex-start;
-      width: 100%;
-    }
-  
-    .cart-image {
-      width: 100%;
-      height: auto;
-    }
-  }
- 
-.cart-item-middle p {
-  color: #333; /* Sau orice altă culoare dorești (de exemplu, black: #000) */
-  margin-bottom: 5px; /* Adaugă puțin spațiu sub fiecare paragraf */
-}
-
-/* Poți specifica un stil diferit pentru titluri (h4) dacă dorești */
-.cart-item-middle h4 {
-  color: #007bff; /* Un exemplu de culoare albastră */
-  margin-bottom: 8px;
-}
-
-/* Dacă ai stiluri specifice pentru textul bold, le poți ajusta și pe ele */
-.cart-item-middle strong {
-  color: #555; /* Un exemplu de gri mai închis pentru textul bold */
-}
-
-.product-details-horizontal {
-  display: flex;
-  flex-wrap: wrap; /* Permite trecerea pe o linie nouă dacă nu încap toate detaliile */
-  gap: 10px; /* Spațiu între detaliile orizontale */
-  font-size: 12px; /* Un font mai mic pentru detalii */
-  margin-top: 5px; /* Spațiu între subtotal și detalii */
-}
-
-.product-details-horizontal p {
-  margin-bottom: 0; /* Elimină margin-ul vertical implicit al paragrafului */
-}
-
-.detail-label {
-  color: green; /* Schimbă culoarea etichetelor aici (exemplu: verde) */
-  font-weight: bold; /* Le facem și bold pentru a ieși în evidență */
-}
-
-/* Poți ajusta stilurile pentru ecran mic dacă este necesar */
-@media (max-width: 600px) {
-  .product-details-horizontal {
-    flex-direction: column; /* Revine la afișarea pe verticală pe ecrane mici */
-    gap: 5px;
+  .notification-content {
+    width: 100%;
   }
 }
